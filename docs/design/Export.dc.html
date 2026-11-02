@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Exportar anotações</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#262321}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FBF8F1; color: #262321; font-family: Inter, system-ui, sans-serif">
+
+  <header style="padding: 28px 4px 0; display: flex; align-items: center">
+    <a href="Notes.dc.html" aria-label="Fechar" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: #262321">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </a>
+    <h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 20px; line-height: 26px; font-weight: 500">Exportar anotações</h1>
+  </header>
+
+  <form style="padding: 12px 20px 0; display: flex; flex-direction: column; gap: 16px">
+    <fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column">
+      <legend style="padding: 0 0 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6F6A62">Incluir</legend>
+      <label style="min-height: 44px; display: flex; align-items: center; justify-content: space-between; font-size: 15px; border-bottom: 1px solid #E6DFD0">Destaques (9)<input type="checkbox" checked="checked" style="width: 20px; height: 20px; accent-color: #7A3B1D"></label>
+      <label style="min-height: 44px; display: flex; align-items: center; justify-content: space-between; font-size: 15px; border-bottom: 1px solid #E6DFD0">Notas (3)<input type="checkbox" checked="checked" style="width: 20px; height: 20px; accent-color: #7A3B1D"></label>
+      <label style="min-height: 44px; display: flex; align-items: center; justify-content: space-between; font-size: 15px">Número da página<input type="checkbox" checked="checked" style="width: 20px; height: 20px; accent-color: #7A3B1D"></label>
+    </fieldset>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: baseline; justify-content: space-between">
+        <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6F6A62">Prévia</p>
+        <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6F6A62">notas-sobre-o-metodo.md</p>
+      </div>
+      <pre style="margin: 0; height: 330px; overflow: hidden; box-sizing: border-box; padding: 14px 16px; border-radius: 12px; background: #F3EEE3; font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.6; white-space: pre-wrap; color: #262321">---
+title: Notas sobre o método
+author: Ana Ferraz
+tags: [livro, marginalia]
+exported: 2026-11-01
+---
+
+# Notas sobre o método
+
+## 3. Programar é construir teoria
+
+&gt; nenhum comentário recupera
+&gt; — p. 47
+
+&gt; Ter a teoria de um programa é saber
+&gt; explicar suas escolhas
+&gt; — p. 47
+
+Comparar com conhecimento tácito em
+Polanyi.</pre>
+    </div>
+  </form>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; padding: 12px 20px 24px; background: #FBF8F1; border-top: 1px solid #E6DFD0; display: flex; gap: 12px">
+    <button type="button" style="flex: 1; height: 48px; border: 1px solid #D6CDBB; border-radius: 12px; background: transparent; color: #262321; font-family: Inter, sans-serif; font-size: 15px; font-weight: 500">Compartilhar</button>
+    <button type="button" style="flex: 1; height: 48px; border: 0; border-radius: 12px; background: #7A3B1D; color: #FBF8F1; font-family: Inter, sans-serif; font-size: 15px; font-weight: 500">Salvar arquivo</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

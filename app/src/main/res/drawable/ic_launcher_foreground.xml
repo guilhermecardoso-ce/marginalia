@@ -1,0 +1,23 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Página -->
+    <path
+        android:fillColor="#FBF8F1"
+        android:pathData="M37.1,28h33.8a3.9,3.9 0,0 1,3.9 3.9v44.2a3.9,3.9 0,0 1,-3.9 3.9h-33.8a3.9,3.9 0,0 1,-3.9 -3.9v-44.2a3.9,3.9 0,0 1,3.9 -3.9z" />
+    <!-- Linhas de texto -->
+    <path
+        android:pathData="M46.2,39.7h19.5M46.2,47.5h19.5M46.2,55.3h14.3M46.2,63.1h19.5M46.2,70.9h10.4"
+        android:strokeWidth="2.6"
+        android:strokeColor="#262321"
+        android:strokeAlpha="0.75"
+        android:strokeLineCap="round" />
+    <!-- Marca na margem -->
+    <path
+        android:pathData="M39.7,46.2v18.2"
+        android:strokeWidth="3.25"
+        android:strokeColor="#7A3B1D"
+        android:strokeLineCap="round" />
+</vector>

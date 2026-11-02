@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Leitor</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: {{t.bg}}; color: {{t.text}}; font-family: Inter, system-ui, sans-serif">
+
+  <article onClick="{{toggle}}" style="box-sizing: border-box; height: 844px; padding: 64px 28px 48px; font-family: Literata, Georgia, serif; font-size: {{fs}}px; line-height: 1.5; text-align: left; hyphens: auto; cursor: pointer">
+    <p style="margin: 0 0 4px; font-family: Inter, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.sec}}">Capítulo 3</p>
+    <h2 style="margin: 0 0 24px; font-size: 1.35em; line-height: 1.25; font-weight: 500">Programar é construir teoria</h2>
+    <p style="margin: 0 0 0.9em">Um programa não é apenas o texto que o descreve. Quando a equipe que o escreveu se dispersa, perde-se algo que nenhum comentário recupera: a compreensão de por que cada parte é como é.</p>
+    <p style="margin: 0 0 0.9em">Peter Naur chamou essa compreensão de teoria.<a href="Footnote.dc.html" aria-label="Nota 1" style="color: {{t.link}}; font-size: 0.7em; vertical-align: super; line-height: 0; text-decoration: none; padding: 0 2px">1</a> Ter a teoria de um programa é saber explicar suas escolhas, responder a perguntas sobre ele e modificá-lo sem trair sua forma.</p>
+    <pre style="margin: 0 0 0.9em; padding: 12px 14px; border-radius: 8px; background: {{t.code}}; font-family: 'JetBrains Mono', monospace; font-size: 0.78em; line-height: 1.5; overflow-x: auto; white-space: pre">def revisar(programa, teoria):
+    return teoria.explica(programa)</pre>
+    <p style="margin: 0">Daí uma consequência incômoda: a documentação ajuda, mas não substitui a convivência com o código. A teoria mora nas pessoas, e é com elas que se transmite.</p>
+  </article>
+
+  <sc-if value="{{shown}}" hint-placeholder-val="{{true}}">
+    <header style="position: absolute; top: 0; left: 0; right: 0; box-sizing: border-box; padding: 28px 4px 4px; background: {{t.bg}}; border-bottom: 1px solid {{t.line}}; display: flex; align-items: center">
+      <a href="Library.dc.html" aria-label="Voltar para a biblioteca" style="width: 48px; height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: {{t.text}}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"></path></svg>
+      </a>
+      <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+        <p style="margin: 0; font-size: 15px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Notas sobre o método</p>
+        <p style="margin: 0; font-size: 12px; color: {{t.sec}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">3. Programar é construir teoria</p>
+      </div>
+      <button type="button" aria-label="Buscar no livro" style="width: 48px; height: 48px; flex-shrink: 0; border: 0; background: transparent; color: {{t.text}}; display: flex; align-items: center; justify-content: center">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4.5-4.5"></path></svg>
+      </button>
+      <a href="Appearance.dc.html" aria-label="Aparência do texto" style="width: 48px; height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: {{t.text}}; text-decoration: none; font-family: Literata, serif; font-size: 18px; font-weight: 500">Aa</a>
+      <button type="button" aria-label="Marcar página" style="width: 48px; height: 48px; flex-shrink: 0; border: 0; background: transparent; color: {{t.text}}; display: flex; align-items: center; justify-content: center">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10v16l-5-4-5 4z"></path></svg>
+      </button>
+    </header>
+
+    <footer style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; padding: 12px 4px 16px; background: {{t.bg}}; border-top: 1px solid {{t.line}}; display: flex; flex-direction: column; gap: 4px">
+      <div style="padding: 8px 20px">
+        <div style="position: relative; height: 4px; border-radius: 2px; background: {{t.line}}">
+          <div style="width: 41%; height: 4px; border-radius: 2px; background: {{t.brand}}"></div>
+          <div style="position: absolute; left: 41%; top: -6px; width: 16px; height: 16px; margin-left: -8px; border-radius: 8px; background: {{t.brand}}"></div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center">
+        <a href="Toc.dc.html" aria-label="Sumário" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: {{t.text}}">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>
+        </a>
+        <p style="margin: 0; flex-grow: 1; text-align: center; font-size: 12px; color: {{t.sec}}">p. 47 de 312 · 9 min no capítulo</p>
+        <a href="Notes.dc.html" aria-label="Anotações deste livro" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: {{t.text}}">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"></path></svg>
+        </a>
+      </div>
+    </footer>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["claro","classico","sepia","escuro"],"default":"classico"},"bars":{"editor":"boolean","default":true},"size":{"editor":"int","min":14,"max":28,"default":18,"unit":"px"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const themes = {
+      claro:    { bg: '#FAFAF7', text: '#1F1F1F', sec: '#6B6B6B', link: '#2F5DA8', line: '#E3E3DE', code: '#F0F0EC', brand: '#7A3B1D' },
+      classico: { bg: '#FBF8F1', text: '#262321', sec: '#6F6A62', link: '#7A3B1D', line: '#E6DFD0', code: '#F3EEE3', brand: '#7A3B1D' },
+      sepia:    { bg: '#F1E4C9', text: '#3B2E22', sec: '#6E5A44', link: '#8A4517', line: '#D9C6A0', code: '#E8D8B8', brand: '#7A3B1D' },
+      escuro:   { bg: '#121212', text: '#CFCAC1', sec: '#8F8B84', link: '#8AB4F8', line: '#2C2B29', code: '#1C1C1B', brand: '#D08A62' }
+    };
+    const t = themes[this.props.theme] || themes.classico;
+    const st = this.state || {};
+    const shown = st.shown != null ? st.shown : (this.props.bars ?? true);
+    return {
+      t,
+      fs: this.props.size ?? 18,
+      shown,
+      toggle: () => this.setState({ shown: !shown })
+    };
+  }
+}
+</script>
+</body>
+</html>

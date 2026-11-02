@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Marginália</string>
+
+    <!-- Abas -->
+    <string name="tab_library">Biblioteca</string>
+    <string name="tab_annotations">Anotações</string>
+    <string name="tab_settings">Ajustes</string>
+
+    <!-- Ações -->
+    <string name="action_back">Voltar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_clear">Limpar</string>
+    <string name="action_close">Fechar</string>
+    <string name="action_close_search">Fechar busca</string>
+    <string name="action_delete">Excluir</string>
+    <string name="action_more">Mais ações</string>
+    <string name="action_save">Salvar</string>
+
+    <!-- Biblioteca -->
+    <string name="library_title">Biblioteca</string>
+    <string name="library_search">Buscar na biblioteca</string>
+    <string name="library_search_hint">Título ou autor</string>
+    <string name="library_add">Adicionar livro</string>
+    <string name="library_continue">Continuar lendo</string>
+    <string name="library_continue_action">Continuar leitura</string>
+    <string name="library_percent">%1$d%%</string>
+    <plurals name="library_all_books">
+        <item quantity="one">Todos os livros · %1$d</item>
+        <item quantity="many">Todos os livros · %1$d</item>
+        <item quantity="other">Todos os livros · %1$d</item>
+    </plurals>
+    <string name="library_status_new">Não iniciado</string>
+    <string name="library_status_finished">Concluído</string>
+    <string name="library_empty_title">Nenhum livro ainda.</string>
+    <string name="library_empty_body">Adicione um EPUB ou PDF do seu aparelho. O arquivo continua onde está.</string>
+    <string name="library_no_results">Nenhum livro encontrado.</string>
+    <string name="library_imported">%1$s adicionado.</string>
+    <string name="library_already">Este livro já está na biblioteca.</string>
+    <string name="library_import_failed">Não foi possível abrir este arquivo.</string>
+    <string name="library_file_missing">Arquivo não encontrado. Ele foi movido ou apagado?</string>
+    <string name="library_open_failed">Não foi possível abrir este livro.</string>
+    <string name="library_remove">Remover da biblioteca</string>
+    <string name="sort_recent">Recentes</string>
+    <string name="sort_title">Título</string>
+    <string name="sort_author">Autor</string>
+
+    <!-- Anotações -->
+    <string name="annotations_title">Anotações</string>
+    <string name="annotations_empty_title">Nenhuma anotação ainda.</string>
+    <string name="annotations_empty_body">Selecione um trecho durante a leitura para destacar ou anotar.</string>
+    <plurals name="annotations_count">
+        <item quantity="one">%1$d anotação</item>
+        <item quantity="many">%1$d anotações</item>
+        <item quantity="other">%1$d anotações</item>
+    </plurals>
+    <string name="notes_subtitle">%1$s · %2$d itens</string>
+    <string name="filter_all">Todas</string>
+    <string name="filter_highlights">Destaques · %1$d</string>
+    <string name="filter_notes">Notas · %1$d</string>
+    <string name="notes_no_chapter">Sem capítulo</string>
+    <string name="notes_empty_title">Nenhuma anotação ainda.</string>
+    <string name="notes_empty_body">Nada neste filtro.</string>
+    <string name="notes_export">Exportar em Markdown</string>
+    <string name="note_title">Nota</string>
+    <string name="note_hint">Escreva sua nota</string>
+    <string name="note_add">Adicionar nota</string>
+    <string name="note_edit">Editar nota</string>
+    <string name="meta_page_date">p. %1$d · %2$s</string>
+    <string name="date_today">hoje</string>
+    <string name="date_yesterday">ontem</string>
+    <string name="color_yellow">Destacar em amarelo</string>
+    <string name="color_green">Destacar em verde</string>
+    <string name="color_blue">Destacar em azul</string>
+    <string name="color_pink">Destacar em rosa</string>
+
+    <!-- Exportar -->
+    <string name="export_title">Exportar anotações</string>
+    <string name="export_include">Incluir</string>
+    <string name="export_highlights">Destaques (%1$d)</string>
+    <string name="export_notes">Notas (%1$d)</string>
+    <string name="export_page_numbers">Número da página</string>
+    <string name="export_preview">Prévia</string>
+    <string name="export_share_action">Compartilhar</string>
+    <string name="export_save_action">Salvar arquivo</string>
+    <string name="export_share">Compartilhar anotações</string>
+    <string name="export_saved">Arquivo salvo com %1$d anotações.</string>
+    <string name="export_failed">Não foi possível salvar o arquivo.</string>
+
+    <!-- Ajustes e aparência -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_reading_hint">Valem para todos os livros. Também mudam pelo botão Aa durante a leitura.</string>
+    <string name="settings_about">Sobre</string>
+    <string name="settings_about_body">Marginália %1$s. Leitor de estudo para EPUB e PDF. 100%% offline: sem conta, sem anúncios, sem coleta de dados.</string>
+    <string name="settings_licenses">Fontes Inter, Literata e JetBrains Mono (SIL Open Font License 1.1). Readium Kotlin Toolkit (BSD-3). PDFium e AndroidPdfViewer (BSD e Apache 2.0). Ícones Material Symbols (Apache 2.0).</string>
+    <string name="appearance_theme">Tema</string>
+    <string name="appearance_size">Tamanho</string>
+    <string name="appearance_font">Fonte</string>
+    <string name="appearance_line_spacing">Entrelinha</string>
+    <string name="appearance_reset">Restaurar padrão</string>
+    <string name="appearance_smaller">Diminuir texto</string>
+    <string name="appearance_bigger">Aumentar texto</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_classic">Clássico</string>
+    <string name="theme_sepia">Sépia</string>
+    <string name="theme_dark">Escuro</string>
+    <string name="spacing_compact">Compacta</string>
+    <string name="spacing_default">Padrão</string>
+    <string name="spacing_wide">Ampla</string>
+
+    <!-- Leitor -->
+    <string name="reader_back">Voltar para a biblioteca</string>
+    <string name="reader_search">Buscar no livro</string>
+    <string name="reader_search_hint">Buscar no livro</string>
+    <string name="reader_appearance">Aparência do texto</string>
+    <string name="reader_bookmark_add">Marcar página</string>
+    <string name="reader_bookmark_remove">Desmarcar página</string>
+    <string name="reader_contents">Sumário</string>
+    <string name="reader_notes">Anotações deste livro</string>
+    <string name="reader_notes_empty">Selecione um trecho para destacar ou anotar.</string>
+    <string name="reader_page_of">p. %1$d de %2$d</string>
+    <string name="reader_page_minutes">%1$s · %2$d min no capítulo</string>
+    <string name="contents_close">Fechar sumário</string>
+    <string name="contents_progress">%1$d%% lido · %2$d páginas</string>
+    <string name="contents_progress_short">%1$d%% lido</string>
+    <string name="contents_toc">Sumário</string>
+    <string name="contents_annotations">Anotações · %1$d</string>
+    <string name="contents_bookmarks">Marcadores · %1$d</string>
+    <string name="contents_bookmarks_plain">Marcadores</string>
+    <string name="toc_empty_title">Sem sumário.</string>
+    <string name="toc_empty_body">Este arquivo não traz um sumário.</string>
+    <string name="bookmarks_empty_title">Nenhum marcador.</string>
+    <string name="bookmarks_empty_body">Toque no marcador da barra superior para guardar a página.</string>
+    <string name="bookmark_untitled">Marcador</string>
+    <string name="selection_note">Nota</string>
+    <string name="selection_copy">Copiar</string>
+    <string name="footnote_title">Nota</string>
+    <string name="footnote_go">Ir para a nota</string>
+    <plurals name="search_results">
+        <item quantity="one">%1$d resultado</item>
+        <item quantity="many">%1$d resultados</item>
+        <item quantity="other">%1$d resultados</item>
+    </plurals>
+</resources>

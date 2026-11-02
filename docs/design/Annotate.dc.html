@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Seleção e destaque</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; overflow: hidden; background: #FBF8F1; color: #262321; font-family: Inter, system-ui, sans-serif">
+  <article style="box-sizing: border-box; height: 844px; padding: 64px 28px 48px; font-family: Literata, Georgia, serif; font-size: 18px; line-height: 1.5; hyphens: auto">
+    <p style="margin: 0 0 4px; font-family: Inter, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6F6A62">Capítulo 3</p>
+    <h2 style="margin: 0 0 24px; font-size: 1.35em; line-height: 1.25; font-weight: 500">Programar é construir teoria</h2>
+    <p style="margin: 0 0 0.9em">Um programa não é apenas o texto que o descreve. Quando a equipe que o escreveu se dispersa, perde-se algo que <span style="background: #F2DC8C; border-radius: 2px">nenhum comentário recupera</span>: a compreensão de por que cada parte é como é.</p>
+
+    <div style="position: relative">
+      <div role="toolbar" aria-label="Ações da seleção" style="position: absolute; left: -12px; right: -12px; bottom: calc(100% + 8px); box-sizing: border-box; padding: 6px; background: #FBF8F1; border: 1px solid #D6CDBB; border-radius: 12px; box-shadow: 0 2px 8px rgba(38, 35, 33, 0.08); font-family: Inter, sans-serif; display: flex; align-items: center; gap: 2px">
+        <button type="button" aria-label="Destacar em amarelo" style="width: 40px; height: 44px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center"><span style="width: 24px; height: 24px; border-radius: 12px; background: #F2DC8C; border: 1px solid #D9BE5C"></span></button>
+        <button type="button" aria-label="Destacar em verde" style="width: 40px; height: 44px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center"><span style="width: 24px; height: 24px; border-radius: 12px; background: #CFE3B4; border: 1px solid #A7C384"></span></button>
+        <button type="button" aria-label="Destacar em azul" style="width: 40px; height: 44px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center"><span style="width: 24px; height: 24px; border-radius: 12px; background: #C9DBF2; border: 1px solid #93B3DC"></span></button>
+        <button type="button" aria-label="Destacar em rosa" style="width: 40px; height: 44px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center"><span style="width: 24px; height: 24px; border-radius: 12px; background: #F2CBC4; border: 1px solid #D69C92"></span></button>
+        <span style="width: 1px; height: 28px; margin: 0 4px; background: #E6DFD0"></span>
+        <button type="button" style="height: 44px; padding: 0 10px; border: 0; background: transparent; color: #262321; font-family: Inter, sans-serif; font-size: 14px; font-weight: 500">Nota</button>
+        <button type="button" style="height: 44px; padding: 0 10px; border: 0; background: transparent; color: #262321; font-family: Inter, sans-serif; font-size: 14px; font-weight: 500">Copiar</button>
+        <button type="button" aria-label="Mais ações" style="width: 40px; height: 44px; border: 0; background: transparent; color: #262321; display: flex; align-items: center; justify-content: center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5.5" r="1.6"></circle><circle cx="12" cy="12" r="1.6"></circle><circle cx="12" cy="18.5" r="1.6"></circle></svg>
+        </button>
+      </div>
+
+      <p style="margin: 0 0 0.9em">Peter Naur chamou essa compreensão de teoria.<span style="color: #7A3B1D; font-size: 0.7em; vertical-align: super; line-height: 0; padding: 0 2px">1</span> <span style="display: inline-block; position: relative; width: 2px; height: 1.15em; vertical-align: text-bottom; background: #7A3B1D"><span style="position: absolute; left: -6px; top: -12px; width: 14px; height: 14px; border-radius: 7px 7px 0 7px; background: #7A3B1D"></span></span><span style="background: rgba(122, 59, 29, 0.18)">Ter a teoria de um programa é saber explicar suas escolhas</span><span style="display: inline-block; position: relative; width: 2px; height: 1.15em; vertical-align: text-bottom; background: #7A3B1D"><span style="position: absolute; left: -6px; bottom: -12px; width: 14px; height: 14px; border-radius: 7px 0 7px 7px; background: #7A3B1D"></span></span>, responder a perguntas sobre ele e modificá-lo sem trair sua forma.</p>
+    </div>
+
+    <pre style="margin: 0 0 0.9em; padding: 12px 14px; border-radius: 8px; background: #F3EEE3; font-family: 'JetBrains Mono', monospace; font-size: 0.78em; line-height: 1.5; white-space: pre">def revisar(programa, teoria):
+    return teoria.explica(programa)</pre>
+    <p style="margin: 0">Daí uma consequência incômoda: a documentação ajuda, mas não substitui a convivência com o código. A teoria mora nas pessoas, e é com elas que se transmite.</p>
+  </article>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

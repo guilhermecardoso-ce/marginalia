@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/reader_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Navegador do Readium (EPUB ou PDF). -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/reader_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Barras, folhas e menus em Compose. Toques fora deles passam para o navegador. -->
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/reader_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>

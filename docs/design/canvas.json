@@ -1,0 +1,36 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-11-01T21:00:00Z"},
+  "title": "Marginália — Marca e Telas",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 1260, "title": "Guia de marca"},
+    "Library.dc.html": {"x": 0, "y": 1680, "w": 390, "h": 844, "title": "Biblioteca"},
+    "Reader.dc.html": {"x": 470, "y": 1680, "w": 390, "h": 844, "title": "Leitor (toque no centro)", "is_interactive": true},
+    "Toc.dc.html": {"x": 940, "y": 1680, "w": 390, "h": 844, "title": "Sumário"},
+    "Appearance.dc.html": {"x": 1410, "y": 1680, "w": 390, "h": 844, "title": "Aparência", "is_interactive": true},
+    "Annotate.dc.html": {"x": 1880, "y": 1680, "w": 390, "h": 844, "title": "Seleção e destaque"},
+    "Footnote.dc.html": {"x": 2350, "y": 1680, "w": 390, "h": 844, "title": "Nota de rodapé"},
+    "Notes.dc.html": {"x": 2820, "y": 1680, "w": 390, "h": 844, "title": "Anotações do livro"},
+    "Export.dc.html": {"x": 3290, "y": 1680, "w": 390, "h": 844, "title": "Exportar Markdown"},
+    "Themes.dc.html": {"x": 0, "y": 2944, "w": 1760, "h": 990, "title": "Os quatro temas"}
+  },
+  "order": [
+    "Main.dc.html",
+    "Library.dc.html",
+    "Reader.dc.html",
+    "Toc.dc.html",
+    "Appearance.dc.html",
+    "Annotate.dc.html",
+    "Footnote.dc.html",
+    "Notes.dc.html",
+    "Export.dc.html",
+    "Themes.dc.html"
+  ],
+  "notes": {
+    "row_screens": {"x": 0, "y": 1380, "text": "Telas principais — tema Clássico", "kind": "title1", "maxW": 3680},
+    "row_themes": {"x": 0, "y": 2644, "text": "A interface segue o tema de leitura", "kind": "title1", "maxW": 1760}
+  },
+  "designSystems": []
+}

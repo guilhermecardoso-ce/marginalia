@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base sem barra de ação: a interface é toda em Compose, inclusive no leitor. -->
+    <style name="Theme.Marginalia" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/classic_background</item>
+        <item name="android:windowSplashScreenBackground">@color/classic_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="colorAccent">@color/brand</item>
+        <item name="android:textColorHighlight">#2E7A3B1D</item>
+    </style>
+</resources>

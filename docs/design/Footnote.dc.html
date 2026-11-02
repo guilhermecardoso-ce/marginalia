@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Nota de rodapé</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#7A3B1D}a:hover{color:#5E2C15}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; font-family: Inter, system-ui, sans-serif">
+  <dc-import name="Reader" theme="classico" bars="{{no}}" hint-size="390px,844px"></dc-import>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(38, 35, 33, 0.24)"></div>
+
+  <section role="dialog" aria-label="Nota 1" style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; padding: 8px 24px 28px; background: #FBF8F1; color: #262321; border-radius: 12px 12px 0 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="align-self: center; width: 32px; height: 4px; border-radius: 2px; background: #E6DFD0"></div>
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6F6A62">Nota 1</p>
+      <a href="Reader.dc.html" aria-label="Fechar nota" style="width: 44px; height: 44px; margin-right: -12px; display: flex; align-items: center; justify-content: center; color: #262321">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </a>
+    </div>
+    <p style="margin: 0; font-family: Literata, Georgia, serif; font-size: 17px; line-height: 1.55">Peter Naur, “Programming as Theory Building”, <i>Microprocessing and Microprogramming</i> 15, n. 5 (1985), p. 253–261. O ensaio é a origem da expressão usada neste capítulo.</p>
+    <div style="display: flex; gap: 12px; padding-top: 4px">
+      <a href="Reader.dc.html" style="height: 44px; padding: 0 16px; border: 1px solid #D6CDBB; border-radius: 12px; display: inline-flex; align-items: center; text-decoration: none; color: #262321; font-size: 14px; font-weight: 500">Ir para as notas</a>
+      <a href="Annotate.dc.html" style="height: 44px; padding: 0 16px; border: 1px solid #D6CDBB; border-radius: 12px; display: inline-flex; align-items: center; text-decoration: none; color: #262321; font-size: 14px; font-weight: 500">Destacar nota</a>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { no: false };
+  }
+}
+</script>
+</body>
+</html>

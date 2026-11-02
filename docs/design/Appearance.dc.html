@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Aparência do texto</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; font-family: Inter, system-ui, sans-serif">
+  <dc-import name="Reader" theme="{{theme}}" bars="{{no}}" size="{{size}}" hint-size="390px,844px"></dc-import>
+
+  <section aria-label="Aparência do texto" style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; padding: 8px 20px 28px; background: {{t.bg}}; color: {{t.text}}; border-top: 1px solid {{t.line}}; border-radius: 12px 12px 0 0; display: flex; flex-direction: column; gap: 20px">
+    <div style="align-self: center; width: 32px; height: 4px; border-radius: 2px; background: {{t.line}}"></div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.sec}}">Tema</p>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+        <sc-for list="{{swatches}}" as="s" hint-placeholder-count="4">
+          <button type="button" onClick="{{s.pick}}" aria-pressed="{{s.on}}" style="height: 76px; padding: 0; border: 0; background: transparent; font-family: Inter, sans-serif; display: flex; flex-direction: column; align-items: stretch; gap: 6px; cursor: pointer">
+            <span style="{{s.box}}">Aa</span>
+            <span style="font-size: 12px; font-weight: 500; color: {{t.text}}">{{s.label}}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.sec}}">Tamanho</p>
+      <div style="display: flex; align-items: center; border: 1px solid {{t.line}}; border-radius: 12px">
+        <button type="button" onClick="{{smaller}}" aria-label="Diminuir texto" style="width: 56px; height: 44px; border: 0; background: transparent; color: {{t.text}}; font-family: Literata, serif; font-size: 15px; cursor: pointer">A−</button>
+        <span style="min-width: 48px; text-align: center; font-size: 15px; font-weight: 500">{{size}}</span>
+        <button type="button" onClick="{{bigger}}" aria-label="Aumentar texto" style="width: 56px; height: 44px; border: 0; background: transparent; color: {{t.text}}; font-family: Literata, serif; font-size: 20px; cursor: pointer">A+</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.sec}}">Fonte</p>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid {{t.line}}; border-radius: 12px; padding: 3px; gap: 3px">
+        <button type="button" aria-pressed="true" style="height: 40px; border: 0; border-radius: 9px; background: {{t.sel}}; color: {{t.text}}; font-family: Literata, serif; font-size: 15px; font-weight: 500">Literata</button>
+        <button type="button" aria-pressed="false" style="height: 40px; border: 0; border-radius: 9px; background: transparent; color: {{t.text}}; font-family: Inter, sans-serif; font-size: 15px">Inter</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.sec}}">Entrelinha</p>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid {{t.line}}; border-radius: 12px; padding: 3px; gap: 3px">
+        <button type="button" aria-pressed="false" style="height: 40px; border: 0; border-radius: 9px; background: transparent; color: {{t.text}}; font-family: Inter, sans-serif; font-size: 14px">Compacta</button>
+        <button type="button" aria-pressed="true" style="height: 40px; border: 0; border-radius: 9px; background: {{t.sel}}; color: {{t.text}}; font-family: Inter, sans-serif; font-size: 14px; font-weight: 600">Padrão</button>
+        <button type="button" aria-pressed="false" style="height: 40px; border: 0; border-radius: 9px; background: transparent; color: {{t.text}}; font-family: Inter, sans-serif; font-size: 14px">Ampla</button>
+      </div>
+    </div>
+
+    <button type="button" onClick="{{reset}}" style="align-self: flex-start; height: 44px; padding: 0; border: 0; background: transparent; color: {{t.sec}}; font-family: Inter, sans-serif; font-size: 14px; font-weight: 500; text-decoration: underline; cursor: pointer">Restaurar padrão</button>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const themes = {
+      claro:    { label: 'Claro',    bg: '#FAFAF7', text: '#1F1F1F', sec: '#6B6B6B', line: '#E3E3DE', sel: '#ECECE7', brand: '#7A3B1D' },
+      classico: { label: 'Clássico', bg: '#FBF8F1', text: '#262321', sec: '#6F6A62', line: '#E6DFD0', sel: '#EDE6D7', brand: '#7A3B1D' },
+      sepia:    { label: 'Sépia',    bg: '#F1E4C9', text: '#3B2E22', sec: '#6E5A44', line: '#D9C6A0', sel: '#E3D3B1', brand: '#7A3B1D' },
+      escuro:   { label: 'Escuro',   bg: '#121212', text: '#CFCAC1', sec: '#8F8B84', line: '#2C2B29', sel: '#2A2927', brand: '#D08A62' }
+    };
+    const st = this.state || {};
+    const theme = st.theme || 'classico';
+    const size = st.size || 18;
+    const t = themes[theme];
+    const swatches = Object.keys(themes).map((key) => {
+      const s = themes[key];
+      const on = key === theme;
+      return {
+        label: s.label,
+        on: on ? 'true' : 'false',
+        box: 'height: 52px; box-sizing: border-box; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: Literata, serif; font-size: 20px; background: ' + s.bg + '; color: ' + s.text + '; border: ' + (on ? '2px solid ' + t.brand : '1px solid ' + t.line),
+        pick: () => this.setState({ theme: key })
+      };
+    });
+    return {
+      t,
+      theme,
+      size,
+      no: false,
+      swatches,
+      smaller: () => this.setState({ size: Math.max(14, size - 1) }),
+      bigger: () => this.setState({ size: Math.min(28, size + 1) }),
+      reset: () => this.setState({ theme: 'classico', size: 18 })
+    };
+  }
+}
+</script>
+</body>
+</html>
