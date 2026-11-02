@@ -5,6 +5,8 @@
     <!-- 100% offline: nenhuma dependência pode trazer acesso à rede. -->
     <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
+    <!-- Vem do media3 (áudio do Readium), que o app não usa. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" tools:node="remove" />
 
     <application
         android:name=".MarginaliaApp"
