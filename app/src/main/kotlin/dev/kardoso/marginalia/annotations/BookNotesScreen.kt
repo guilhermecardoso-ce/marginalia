@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -81,7 +82,7 @@ fun BookNotesScreen(
             Text(stringResource(R.string.annotations_title), style = MaterialTheme.typography.headlineMedium, color = palette.text)
             state.book?.let {
                 Text(
-                    stringResource(R.string.notes_subtitle, it.title, state.total),
+                    pluralStringResource(R.plurals.notes_subtitle, state.total, it.title, state.total),
                     style = MaterialTheme.typography.bodyMedium,
                     color = palette.secondary,
                 )

@@ -1,6 +1,7 @@
 package dev.kardoso.marginalia.reader
 
 import android.graphics.RectF
+import android.os.SystemClock
 import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -52,7 +53,9 @@ enum class ReaderPanel { NONE, CONTENTS, APPEARANCE, SEARCH }
 
 enum class ContentsTab { TOC, ANNOTATIONS, BOOKMARKS }
 
-data class TocEntry(val title: String, val depth: Int, val link: Link, val href: String, val position: Int?)
+data class TocEntry(val title: String, val depth: Int, val link: Link, val href: String, val position: Int?) {
+    val fragment: String? get() = link.url().toString().substringAfter('#', "").ifEmpty { null }
+}
 
 /** Menu de seleção: um trecho novo (sem `highlightId`) ou um destaque existente. */
 data class SelectionUi(
@@ -171,6 +174,9 @@ class ReaderViewModel @Inject constructor(
         }
 
     private var positionsByResource: List<List<Locator>> = emptyList()
+    private val initialLocator: Locator? = session?.lastLocator
+    private val openedAt = SystemClock.elapsedRealtime()
+    private var restored = false
     private var searchJob: Job? = null
 
     init {
@@ -214,10 +220,21 @@ class ReaderViewModel @Inject constructor(
 
     fun onLocatorChanged(locator: Locator) {
         val session = session ?: return
+        if (!restored) {
+            // Enquanto o navegador carrega, ele pode emitir outro recurso antes de chegar à posição
+            // salva. Essas emissões não podem sobrescrever o progresso.
+            val target = initialLocator
+            val reached = target == null ||
+                locator.href.toString().substringBefore('#') == target.href.toString().substringBefore('#')
+            if (!reached && SystemClock.elapsedRealtime() - openedAt < RESTORE_WINDOW_MS) return
+            restored = true
+        }
         session.lastLocator = locator
         updateLocation(locator)
+        // Guarda o capítulo calculado quando o livro não traz título no locator (cartão "Continuar lendo").
+        val saved = if (locator.title.isNullOrBlank()) locator.copy(title = _state.value.chapter) else locator
         viewModelScope.launch {
-            books.saveProgress(bookId, locator.toJsonString(), locator.locations.totalProgression)
+            books.saveProgress(bookId, saved.toJsonString(), locator.locations.totalProgression)
         }
     }
 
@@ -225,11 +242,16 @@ class ReaderViewModel @Inject constructor(
         val position = locator.locations.position
         val base = locator.href.toString().baseHref()
         val toc = _state.value.toc
-        val tocIndex = toc.indexOfLast { it.href == base && (it.position ?: 0) <= (position ?: Int.MAX_VALUE) }
+        // Subseções do mesmo arquivo só ganham do capítulo quando o locator aponta para a âncora delas.
+        val fragments = locator.locations.fragments.toSet()
+        val tocIndex = toc.indexOfFirst { it.href == base && it.fragment != null && it.fragment in fragments }
             .takeIf { it >= 0 }
+            ?: toc.indexOfFirst { it.href == base }.takeIf { it >= 0 }
             ?: toc.indexOfLast { it.position != null && position != null && it.position <= position }
         val chapter = locator.title?.trim()?.ifEmpty { null } ?: toc.getOrNull(tocIndex)?.title
-        val minutes = if (_state.value.format == BookFormat.EPUB && position != null) {
+        // Só estima o tempo quando o arquivo corresponde a um único capítulo.
+        val chaptersInResource = toc.count { it.href == base && it.depth == toc.getOrNull(tocIndex)?.depth }
+        val minutes = if (_state.value.format == BookFormat.EPUB && position != null && chaptersInResource <= 1) {
             positionsByResource.firstOrNull { list -> list.any { it.href.toString().baseHref() == base } }
                 ?.lastOrNull()?.locations?.position
                 ?.let { last -> ceil((last - position + 1) * MINUTES_PER_POSITION).toInt().coerceAtLeast(1) }
@@ -517,6 +539,7 @@ class ReaderViewModel @Inject constructor(
     companion object {
         const val HIGHLIGHT_ID = "id"
         private const val MAX_SEARCH_HITS = 300
+        private const val RESTORE_WINDOW_MS = 3_000L
 
         /** Uma posição do Readium tem ~1024 caracteres: cerca de 0,75 min de leitura. */
         private const val MINUTES_PER_POSITION = 0.75

@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,9 +21,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.DialogWindowProvider
 import dev.kardoso.marginalia.R
 import dev.kardoso.marginalia.core.theme.ExcerptStyle
 import dev.kardoso.marginalia.core.theme.LocalPalette
@@ -53,6 +56,9 @@ fun NoteEditorDialog(
         tonalElevation = 0.dp,
         title = { Text(stringResource(R.string.note_title), style = MaterialTheme.typography.titleLarge) },
         text = {
+            // Véu padrão do app: texto a 24%, não o preto forte do sistema.
+            val window = (LocalView.current.parent as? DialogWindowProvider)?.window
+            SideEffect { window?.setDimAmount(0.24f) }
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(
                     excerpt,

@@ -5,6 +5,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.RectF
 import android.os.Bundle
 import android.view.ActionMode
 import android.view.Menu
@@ -188,7 +189,13 @@ class ReaderActivity : AppCompatActivity() {
                 }
             },
         )
-        (navigator as? DecorableNavigator)?.addDecorationListener(HIGHLIGHTS_GROUP, viewModel)
+        (navigator as? DecorableNavigator)?.addDecorationListener(
+            HIGHLIGHTS_GROUP,
+            object : DecorableNavigator.Listener {
+                override fun onDecorationActivated(event: DecorableNavigator.OnActivatedEvent): Boolean =
+                    viewModel.onDecorationActivated(event.copy(rect = event.rect?.inOverlay()))
+            },
+        )
     }
 
     private fun setupOverlay() {
@@ -299,8 +306,15 @@ class ReaderActivity : AppCompatActivity() {
 
     private fun refreshSelection() {
         lifecycleScope.launch {
-            viewModel.onSelection((navigator as? SelectableNavigator)?.currentSelection())
+            val selection = (navigator as? SelectableNavigator)?.currentSelection()
+            viewModel.onSelection(selection?.copy(rect = selection.rect?.inOverlay()))
         }
+    }
+
+    /** Os retângulos do Readium são relativos ao navegador, que fica recuado pelo recorte da câmera. */
+    private fun RectF.inOverlay(): RectF {
+        val container = findViewById<View>(R.id.reader_container)
+        return RectF(this).apply { offset(container.paddingLeft.toFloat(), container.paddingTop.toFloat()) }
     }
 
     override fun onStop() {

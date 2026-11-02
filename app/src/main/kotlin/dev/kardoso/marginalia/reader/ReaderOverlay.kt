@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
@@ -28,11 +29,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
-import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -66,6 +67,7 @@ import dev.kardoso.marginalia.core.theme.HighlightColor
 import dev.kardoso.marginalia.core.theme.Literata
 import dev.kardoso.marginalia.core.theme.LocalMotionMillis
 import dev.kardoso.marginalia.core.theme.LocalPalette
+import dev.kardoso.marginalia.core.ui.Hairline
 import dev.kardoso.marginalia.core.ui.IconAction
 import dev.kardoso.marginalia.core.ui.SecondaryButton
 import dev.kardoso.marginalia.core.ui.SectionLabel
@@ -205,7 +207,7 @@ private fun TopBar(
                 onBookmark,
             )
         }
-        Spacer(Modifier.fillMaxWidth().heightIn(min = 1.dp).background(palette.line))
+        Hairline()
     }
 }
 
@@ -219,22 +221,15 @@ private fun BottomBar(
     val palette = LocalPalette.current
     var dragging by remember { mutableStateOf<Float?>(null) }
     Column(Modifier.fillMaxWidth().background(palette.background)) {
-        Spacer(Modifier.fillMaxWidth().heightIn(min = 1.dp).background(palette.line))
+        Hairline()
         Column(Modifier.navigationBarsPadding().padding(start = 4.dp, end = 4.dp, top = 4.dp, bottom = 8.dp)) {
-            Slider(
+            ProgressSlider(
                 value = dragging ?: state.progression,
                 onValueChange = { dragging = it },
                 onValueChangeFinished = {
                     dragging?.let(onSeek)
                     dragging = null
                 },
-                colors = SliderDefaults.colors(
-                    thumbColor = palette.brand,
-                    activeTrackColor = palette.brand,
-                    inactiveTrackColor = palette.line,
-                    activeTickColor = Color.Transparent,
-                    inactiveTickColor = Color.Transparent,
-                ),
                 modifier = Modifier.padding(horizontal = 16.dp),
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -256,6 +251,44 @@ private fun BottomBar(
             }
         }
     }
+}
+
+/** Barra de progresso do design: trilho de 4 dp e polegar redondo de 16 dp, ambos na cor de marca. */
+@Composable
+private fun ProgressSlider(
+    value: Float,
+    onValueChange: (Float) -> Unit,
+    onValueChangeFinished: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val palette = LocalPalette.current
+    val interaction = remember { MutableInteractionSource() }
+    Slider(
+        value = value,
+        onValueChange = onValueChange,
+        onValueChangeFinished = onValueChangeFinished,
+        interactionSource = interaction,
+        modifier = modifier,
+        thumb = {
+            Box(Modifier.size(16.dp).background(palette.brand, CircleShape))
+        },
+        track = { sliderState ->
+            val fraction = sliderState.value.coerceIn(0f, 1f)
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+                    .background(palette.line, RoundedCornerShape(2.dp)),
+            ) {
+                Box(
+                    Modifier
+                        .fillMaxWidth(fraction)
+                        .height(4.dp)
+                        .background(palette.brand, RoundedCornerShape(2.dp)),
+                )
+            }
+        },
+    )
 }
 
 @Composable

@@ -52,6 +52,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.kardoso.marginalia.R
+import dev.kardoso.marginalia.core.readium.locatorFromJson
 import dev.kardoso.marginalia.core.theme.LocalPalette
 import dev.kardoso.marginalia.core.theme.MetaStyle
 import dev.kardoso.marginalia.core.ui.BookCover
@@ -209,6 +210,7 @@ private fun SearchBar(query: String, onQuery: (String) -> Unit, onClose: () -> U
 @Composable
 private fun ContinueReading(book: Book, onOpen: () -> Unit) {
     val palette = LocalPalette.current
+    val chapter = remember(book.locatorJson) { locatorFromJson(book.locatorJson)?.title?.trim()?.ifEmpty { null } }
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 16.dp),
@@ -233,6 +235,16 @@ private fun ContinueReading(book: Book, onOpen: () -> Unit) {
                     )
                     book.author?.let {
                         Text(it, style = MaterialTheme.typography.bodyMedium, color = palette.secondary, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    }
+                    chapter?.let {
+                        Text(
+                            it,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = palette.text,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.padding(top = 8.dp),
+                        )
                     }
                     Spacer(Modifier.weight(1f).heightIn(min = 8.dp))
                     ProgressLine(book.progression.toFloat())
@@ -339,7 +351,7 @@ private fun BookRow(book: Book, onOpen: () -> Unit, onRemove: () -> Unit) {
 private fun Book.statusText(): String = when {
     isFinished -> stringResource(R.string.library_status_finished)
     !isStarted -> stringResource(R.string.library_status_new)
-    else -> stringResource(R.string.library_percent, (progression * 100).roundToInt().coerceAtLeast(1))
+    else -> stringResource(R.string.library_percent, (progression * 100).roundToInt())
 }
 
 private fun LibrarySort.label(): Int = when (this) {

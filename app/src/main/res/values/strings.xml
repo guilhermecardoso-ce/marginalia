@@ -52,7 +52,10 @@
         <item quantity="one">%1$d note</item>
         <item quantity="other">%1$d notes</item>
     </plurals>
-    <string name="notes_subtitle">%1$s · %2$d items</string>
+    <plurals name="notes_subtitle">
+        <item quantity="one">%1$s · %2$d item</item>
+        <item quantity="other">%1$s · %2$d items</item>
+    </plurals>
     <string name="filter_all">All</string>
     <string name="filter_highlights">Highlights · %1$d</string>
     <string name="filter_notes">Notes · %1$d</string>

@@ -51,16 +51,28 @@ Nome do app: **Marginália**.
 
 ## Telas de referência (Fase 0 e 1)
 
-- [ ] **Biblioteca**: título em Literata, "Continuar lendo" com progresso e botão principal, lista com capa, autor e estado, chip PDF, navegação inferior (Biblioteca, Anotações, Ajustes).
-- [ ] **Leitor**: tela cheia sem nada fixo; toque no centro mostra barras. Barra superior: voltar, título e capítulo, buscar, Aa, marcador. Barra inferior: progresso em `brand`, página e tempo no capítulo, sumário, anotações.
-- [ ] **Sumário**: abas Sumário / Anotações / Marcadores, capítulo atual com fundo `selected`, subseções recuadas, número de página.
-- [ ] **Aparência**: folha inferior no tema ativo; 4 temas, tamanho A−/A+, fonte (Literata/Inter), entrelinha (Compacta/Padrão/Ampla), restaurar padrão. O texto atrás muda ao vivo.
-- [ ] **Seleção**: alças e fundo em `brand`; menu flutuante com 4 cores, Nota, Copiar, mais.
-- [ ] **Nota de rodapé**: abre em folha inferior sem sair da página; "Ir para as notas".
-- [ ] **Anotações do livro**: filtros Todas/Destaques/Notas, agrupadas por capítulo, trecho com a cor do destaque, nota abaixo, página e data; botão principal "Exportar em Markdown".
-- [ ] **Exportar**: escolher o que incluir, prévia em Markdown com frontmatter YAML (title, author, tags, exported), salvar via SAF ou compartilhar.
-- [ ] **Quatro temas**: as barras do leitor em cada tema batem com a tabela de cor.
+- [x] **Biblioteca**: título em Literata, "Continuar lendo" com progresso e botão principal, lista com capa, autor e estado, chip PDF, navegação inferior (Biblioteca, Anotações, Ajustes).
+- [x] **Leitor**: tela cheia sem nada fixo; toque no centro mostra barras. Barra superior: voltar, título e capítulo, buscar, Aa, marcador. Barra inferior: progresso em `brand`, página e tempo no capítulo, sumário, anotações.
+- [x] **Sumário**: abas Sumário / Anotações / Marcadores, capítulo atual com fundo `selected`, subseções recuadas, número de página.
+- [x] **Aparência**: folha inferior no tema ativo; 4 temas, tamanho A−/A+, fonte (Literata/Inter), entrelinha (Compacta/Padrão/Ampla), restaurar padrão. O texto atrás muda ao vivo.
+- [x] **Seleção**: alças e fundo em `brand`; menu flutuante com 4 cores, Nota, Copiar, mais.
+- [x] **Nota de rodapé**: abre em folha inferior sem sair da página; "Ir para as notas".
+- [x] **Anotações do livro**: filtros Todas/Destaques/Notas, agrupadas por capítulo, trecho com a cor do destaque, nota abaixo, página e data; botão principal "Exportar em Markdown".
+- [x] **Exportar**: escolher o que incluir, prévia em Markdown com frontmatter YAML (title, author, tags, exported), salvar via SAF ou compartilhar.
+- [x] **Quatro temas**: as barras do leitor em cada tema batem com a tabela de cor.
 
 ## Voz
 
 Curta, direta, sem exclamação nem emoji. "Adicionar livro", "Não foi possível abrir este arquivo.", "12 destaques exportados.", "Nenhuma anotação ainda."
+
+## Estado da implementação (Fase 0 + base da Fase 1)
+
+Conferido no emulador (Pixel 7, Android 16) com `samples/` (EPUB de teste, Dom Casmurro, PDF), em debug e em release com R8.
+
+Diferenças conhecidas em relação ao design:
+
+- **Fundo da seleção de texto**: o WebView usa o azul do sistema; as alças e o menu já seguem a marca. Mudar exigiria CSS no livro, o que fica para decisão.
+- **Blocos de código**: usam a fonte monoespaçada do próprio livro ou do sistema. JetBrains Mono no texto do livro também exigiria CSS injetado.
+- **Número de página**: é a posição do Readium (cerca de 1.024 caracteres), não a página impressa do livro.
+- **Minutos no capítulo**: só aparecem quando o arquivo do EPUB contém um único capítulo; em EPUBs com vários capítulos por arquivo a estimativa seria enganosa.
+- **Nota de rodapé**: a folha mostra "Nota" sem o número, que o Readium não informa.

@@ -23,7 +23,7 @@ data class Book(
     val addedAt: Long,
     val lastOpenedAt: Long?,
 ) {
-    val isStarted: Boolean get() = locatorJson != null && progression > 0.0
+    val isStarted: Boolean get() = locatorJson != null
     val isFinished: Boolean get() = progression >= FINISHED_THRESHOLD
 
     companion object {
