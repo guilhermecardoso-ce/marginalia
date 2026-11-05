@@ -73,6 +73,6 @@ Diferenças conhecidas em relação ao design:
 
 - **Fundo da seleção de texto**: usa um único tom translúcido nos 4 temas (`#D08A62` a 40%), definido por `readiumCssRsProperties`, porque essa configuração fica fixa enquanto o livro está aberto e os temas mudam ao vivo. As alças usam sempre `#7A3B1D`, inclusive no Escuro.
 - **Blocos de código**: usam a fonte monoespaçada do próprio livro ou do sistema. JetBrains Mono no texto do livro também exigiria CSS injetado.
-- **Número de página**: é a posição do Readium (cerca de 1.024 caracteres), não a página impressa do livro.
+- **Número de página**: é a posição do Readium (cerca de 1 KB compactado, uns 2.800 caracteres), não a página impressa do livro.
 - **Minutos no capítulo**: só aparecem quando o arquivo do EPUB contém um único capítulo; em EPUBs com vários capítulos por arquivo a estimativa seria enganosa.
 - **Nota de rodapé**: a folha mostra "Nota" sem o número, que o Readium não informa.

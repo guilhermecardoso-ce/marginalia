@@ -210,7 +210,7 @@ private fun SearchBar(query: String, onQuery: (String) -> Unit, onClose: () -> U
 @Composable
 private fun ContinueReading(book: Book, onOpen: () -> Unit) {
     val palette = LocalPalette.current
-    val chapter = remember(book.locatorJson) { locatorFromJson(book.locatorJson)?.title?.trim()?.ifEmpty { null } }
+    val chapter = remember(book.locatorJson) { book.chapterLabel(locatorFromJson(book.locatorJson)?.title) }
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 16.dp),

@@ -89,6 +89,17 @@ class BookRepositoryTest {
     }
 
     @Test
+    fun `rótulo do capítulo ignora título do livro repetido no sumário`() = runTest {
+        val id = repository.add(newBook(title = "Dom Casmurro")).id
+        val book = repository.get(id)!!
+
+        assertNull(book.chapterLabel("DOM CASMURRO POR MACHADO DE ASSIS"))
+        assertNull(book.chapterLabel("   "))
+        assertNull(book.chapterLabel(null))
+        assertEquals("Do livro.", book.chapterLabel(" Do livro. "))
+    }
+
+    @Test
     fun `remover apaga o livro`() = runTest {
         val id = repository.add(newBook()).id
         repository.delete(id)

@@ -248,7 +248,7 @@ class ReaderViewModel @Inject constructor(
             .takeIf { it >= 0 }
             ?: toc.indexOfFirst { it.href == base }.takeIf { it >= 0 }
             ?: toc.indexOfLast { it.position != null && position != null && it.position <= position }
-        val chapter = locator.title?.trim()?.ifEmpty { null } ?: toc.getOrNull(tocIndex)?.title
+        val chapter = chapterLabel(locator.title?.trim()?.ifEmpty { null } ?: toc.getOrNull(tocIndex)?.title)
         // Só estima o tempo quando o arquivo corresponde a um único capítulo.
         val chaptersInResource = toc.count { it.href == base && it.depth == toc.getOrNull(tocIndex)?.depth }
         val minutes = if (_state.value.format == BookFormat.EPUB && position != null && chaptersInResource <= 1) {
@@ -274,6 +274,8 @@ class ReaderViewModel @Inject constructor(
             progression = locator.locations.totalProgression ?: 0.0,
         )
     }
+
+    private fun chapterLabel(title: String?): String? = session?.book?.chapterLabel(title)
 
     fun seekTo(progression: Float) {
         val publication = publication ?: return
@@ -440,7 +442,7 @@ class ReaderViewModel @Inject constructor(
 
     private fun pointFor(locator: Locator) = BookPoint(
         locatorJson = locator.toJsonString(),
-        chapter = locator.title?.trim()?.ifEmpty { null } ?: _state.value.chapter,
+        chapter = chapterLabel(locator.title) ?: _state.value.chapter,
         position = locator.locations.position ?: _state.value.position,
         progression = locator.locations.totalProgression ?: _state.value.progression.toDouble(),
     )
@@ -513,7 +515,7 @@ class ReaderViewModel @Inject constructor(
                             before = locator.text.before.orEmpty().takeLast(60).trimStart(),
                             match = locator.text.highlight.orEmpty(),
                             after = locator.text.after.orEmpty().take(80).trimEnd(),
-                            chapter = locator.title,
+                            chapter = chapterLabel(locator.title),
                         )
                     }
                     _state.update { it.copy(search = it.search.copy(hits = it.search.hits + hits)) }
@@ -541,8 +543,8 @@ class ReaderViewModel @Inject constructor(
         private const val MAX_SEARCH_HITS = 300
         private const val RESTORE_WINDOW_MS = 3_000L
 
-        /** Uma posição do Readium tem ~1024 caracteres: cerca de 0,75 min de leitura. */
-        private const val MINUTES_PER_POSITION = 0.75
+        /** Uma posição do Readium é ~1 KB compactado: ~2.800 caracteres, ~450 palavras, 1,8 min a 250 ppm. */
+        private const val MINUTES_PER_POSITION = 1.8
     }
 }
 

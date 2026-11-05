@@ -26,6 +26,10 @@ data class Book(
     val isStarted: Boolean get() = locatorJson != null
     val isFinished: Boolean get() = progression >= FINISHED_THRESHOLD
 
+    /** Capítulo a exibir. Alguns EPUBs abrem o sumário repetindo o título do livro: isso não é capítulo. */
+    fun chapterLabel(chapter: String?): String? =
+        chapter?.trim()?.ifEmpty { null }?.takeUnless { it.startsWith(title, ignoreCase = true) }
+
     companion object {
         const val FINISHED_THRESHOLD = 0.995
     }
