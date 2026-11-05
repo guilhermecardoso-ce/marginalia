@@ -36,6 +36,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.components.SingletonComponent
 import dev.kardoso.marginalia.R
+import dev.kardoso.marginalia.core.readium.MarginaliaRsProperties
 import dev.kardoso.marginalia.core.readium.toEpubPreferences
 import dev.kardoso.marginalia.core.theme.MarginaliaTheme
 import dev.kardoso.marginalia.library.BookFormat
@@ -150,6 +151,7 @@ class ReaderActivity : AppCompatActivity() {
     private fun epubConfiguration() = EpubNavigatorFragment.Configuration {
         servedAssets += "fonts/.*"
         selectionActionModeCallback = selectionCallback
+        readiumCssRsProperties = MarginaliaRsProperties
         decorationTemplates = HtmlDecorationTemplates.defaultTemplates(alpha = 1.0, experimentalPositioning = true)
         addFontFamilyDeclaration(FontFamily("Literata")) {
             addFontFace {

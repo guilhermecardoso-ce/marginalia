@@ -25,7 +25,7 @@ Nome do app: **Marginália**.
 | `code` fundo de código | #F0F0EC | #F3EEE3 | #E8D8B8 | #1C1C1B |
 | `brand` | #7A3B1D | #7A3B1D | #7A3B1D | #D08A62 |
 
-- `brand` só em: botão principal, seleção de texto (brand a 18% de opacidade + alças) e progresso.
+- `brand` só em: botão principal, seleção de texto (alças em `brand`; fundo `#D08A62` a 40%, igual nos 4 temas) e progresso.
 - Barras, menus, folhas e diálogos usam `bg`/`line` do tema ativo. Nenhum menu branco no Sépia.
 - Separação por fio de 1 dp; sombra no máximo `0 2 8 rgba(texto, 8%)` em menus flutuantes. Scrim de folha modal: texto a 24%.
 - Cores de destaque (temas claros): amarelo #F2DC8C, verde #CFE3B4, azul #C9DBF2, rosa #F2CBC4. No escuro, versões com opacidade a definir na Fase 1.
@@ -71,7 +71,7 @@ Conferido no emulador (Pixel 7, Android 16) com `samples/` (EPUB de teste, Dom C
 
 Diferenças conhecidas em relação ao design:
 
-- **Fundo da seleção de texto**: o WebView usa o azul do sistema; as alças e o menu já seguem a marca. Mudar exigiria CSS no livro, o que fica para decisão.
+- **Fundo da seleção de texto**: usa um único tom translúcido nos 4 temas (`#D08A62` a 40%), definido por `readiumCssRsProperties`, porque essa configuração fica fixa enquanto o livro está aberto e os temas mudam ao vivo. As alças usam sempre `#7A3B1D`, inclusive no Escuro.
 - **Blocos de código**: usam a fonte monoespaçada do próprio livro ou do sistema. JetBrains Mono no texto do livro também exigiria CSS injetado.
 - **Número de página**: é a posição do Readium (cerca de 1.024 caracteres), não a página impressa do livro.
 - **Minutos no capítulo**: só aparecem quando o arquivo do EPUB contém um único capítulo; em EPUBs com vários capítulos por arquivo a estimativa seria enganosa.

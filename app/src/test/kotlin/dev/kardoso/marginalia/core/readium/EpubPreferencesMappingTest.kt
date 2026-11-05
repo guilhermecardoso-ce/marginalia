@@ -39,6 +39,11 @@ class EpubPreferencesMappingTest {
     }
 
     @Test
+    fun `fundo da seleção usa a terracota translúcida`() {
+        assertEquals("rgba(208, 138, 98, 0.4)", MarginaliaRsProperties.selectionBackgroundColor?.toCss())
+    }
+
+    @Test
     fun `tamanho da fonte fica nos limites`() {
         assertEquals(ReadingPreferences.MAX_FONT_SIZE, ReadingPreferences().withFontSize(99).fontSizeSp)
         assertEquals(ReadingPreferences.MIN_FONT_SIZE, ReadingPreferences().withFontSize(1).fontSizeSp)

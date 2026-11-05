@@ -10,6 +10,8 @@ import javax.inject.Singleton
 import org.json.JSONObject
 import org.readium.adapter.pdfium.document.PdfiumDocumentFactory
 import org.readium.r2.navigator.epub.EpubPreferences
+import org.readium.r2.navigator.epub.css.RsProperties
+import org.readium.r2.navigator.epub.css.Color as CssColor
 import org.readium.r2.navigator.preferences.Color
 import org.readium.r2.navigator.preferences.FontFamily
 import org.readium.r2.navigator.preferences.ImageFilter
@@ -63,5 +65,16 @@ fun ReadingPreferences.toEpubPreferences(): EpubPreferences {
         imageFilter = if (theme == ReaderTheme.ESCURO) ImageFilter.DARKEN else null,
     )
 }
+
+/**
+ * Fundo da seleção de texto: terracota translúcida. As propriedades do ReadiumCSS ficam fixas enquanto
+ * o livro está aberto, então um único tom precisa funcionar sobre os quatro fundos do tema.
+ */
+val SelectionBackground = object : CssColor {
+    override fun toCss(): String = "rgba(208, 138, 98, 0.4)"
+}
+
+/** Propriedades do ReadiumCSS definidas pelo app. */
+val MarginaliaRsProperties = RsProperties(selectionBackgroundColor = SelectionBackground)
 
 private const val BASE_FONT_SIZE = 16.0
