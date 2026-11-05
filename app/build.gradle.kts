@@ -42,8 +42,12 @@ android {
     }
 
     androidResources {
-        // EPUB e PDF já vêm comprimidos; fontes servidas ao WebView do Readium ficam intactas.
+        // Sem compressão, o sistema carrega as fontes direto do APK; a Play compacta no download.
         noCompress += listOf("ttf")
+        // Padrão do aapt mais recursos do Readium que o app não usa: leitor DiViNa e fontes de acessibilidade.
+        ignoreAssetsPattern =
+            "!.svn:!.git:!.ds_store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~:" +
+            "!<dir>divina:!OpenDyslexic-Regular.otf:!AccessibleDfA.otf:!iAWriterDuospace-Regular.ttf"
     }
 
     packaging {

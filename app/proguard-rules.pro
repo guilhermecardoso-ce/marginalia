@@ -1,5 +1,3 @@
-# Readium usa reflexão em alguns serviços e no JSON de Locator.
--keep class org.readium.** { *; }
--dontwarn org.readium.**
+# O PDFium acessa estas classes por JNI.
 -keep class com.shockwave.pdfium.** { *; }
--keep class io.legere.pdfiumandroid.** { *; }
+-dontwarn org.readium.**
