@@ -1,7 +1,6 @@
 # Marca e interface: referência de entrega
 
-Fonte visual: canvas "Marginália — Marca e Telas" (https://claude.ai/artifact/Kr42J9XMSGWM53KzcizNtP).
-Cópia das telas em `docs/design/` (arquivos `.dc.html`). Este documento é o parâmetro de comparação:
+As fontes do desenho original estão em `docs/design/` (arquivos `.dc.html` de um editor de canvas; não abrem sozinhos em um navegador). Este documento é o parâmetro de comparação:
 ao fim de cada fase, cada item marcado aqui precisa bater com o app rodando.
 
 Nome do app: **Marginália**.

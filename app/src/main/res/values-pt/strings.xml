@@ -96,7 +96,7 @@
     <string name="settings_reading_hint">Valem para todos os livros. Também mudam pelo botão Aa durante a leitura.</string>
     <string name="settings_about">Sobre</string>
     <string name="settings_about_body">Marginália %1$s. Leitor de estudo para EPUB e PDF. 100%% offline: sem conta, sem anúncios, sem coleta de dados.</string>
-    <string name="settings_licenses">Fontes Inter, Literata e JetBrains Mono (SIL Open Font License 1.1). Readium Kotlin Toolkit (BSD-3). PDFium e AndroidPdfViewer (BSD e Apache 2.0). Ícones Material Symbols (Apache 2.0).</string>
+    <string name="settings_licenses">Código aberto sob licença MIT. Fontes Inter, Literata e JetBrains Mono (SIL Open Font License 1.1). Readium Kotlin Toolkit (BSD-3). PDFium e AndroidPdfViewer (BSD e Apache 2.0). Ícones Material Symbols (Apache 2.0).</string>
     <string name="appearance_theme">Tema</string>
     <string name="appearance_size">Tamanho</string>
     <string name="appearance_font">Fonte</string>

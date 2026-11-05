@@ -1,7 +1,7 @@
 # Leitor EPUB/PDF para Android
 
 App Android para **leitura densa de EPUB** (livros técnicos e de filosofia). PDF é suportado, mas é secundário.
-Nome do app: **Marginália**. Projeto solo, código fechado, será publicado na Google Play. O PRD completo está em `docs/PRD.md`: leia antes de decisões de escopo.
+Nome do app: **Marginália**. Projeto de código aberto sob licença MIT. O PRD está previsto em `docs/PRD.md`, mas ainda não foi escrito; quando existir, leia antes de decisões de escopo.
 Marca e telas de referência: `docs/BRAND.md` (parâmetro de comparação de cada entrega).
 
 ## Stack (decidida, não trocar sem perguntar)
@@ -16,7 +16,7 @@ Marca e telas de referência: `docs/BRAND.md` (parâmetro de comparação de cad
 
 ## Regras de licença
 
-Código fechado e pago: **toda dependência precisa ser permissiva** (BSD, Apache, MIT, OFL).
+O projeto é MIT e deve continuar reutilizável por qualquer pessoa: **toda dependência precisa ser permissiva** (BSD, Apache, MIT, OFL). Ao adicionar uma, atualize `THIRD_PARTY_NOTICES.md`.
 Nunca adicionar nada GPL/AGPL (ex.: MuPDF, código do Readest/KOReader/Librera). Na dúvida, pergunte.
 
 ## Princípios do produto
