@@ -1,6 +1,7 @@
 package dev.kardoso.marginalia.core.ui
 
 import android.graphics.BitmapFactory
+import android.util.LruCache
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -20,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -28,6 +30,8 @@ import androidx.compose.ui.unit.sp
 import dev.kardoso.marginalia.core.theme.Literata
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+
+private const val COVER_CACHE_ENTRIES = 32
 
 /** Tons sóbrios para capas sem imagem; escolhidos pelo título, sempre o mesmo para o mesmo livro. */
 private val PlaceholderTones = listOf(
@@ -39,6 +43,34 @@ private val PlaceholderTones = listOf(
     Color(0xFF3F3A4A),
 )
 
+private val CoverCache = LruCache<String, ImageBitmap>(COVER_CACHE_ENTRIES)
+
+private fun coverKey(path: String, heightPx: Int) = "$path@$heightPx"
+
+private fun cachedCover(path: String?, heightPx: Int): ImageBitmap? =
+    path?.let { CoverCache.get(coverKey(it, heightPx)) }
+
+/** Decodifica só o necessário para a altura exibida: uma miniatura não precisa da capa inteira na memória. */
+private suspend fun loadCover(path: String, heightPx: Int): ImageBitmap? = withContext(Dispatchers.IO) {
+    runCatching {
+        val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        BitmapFactory.decodeFile(path, bounds)
+        val options = BitmapFactory.Options().apply {
+            inSampleSize = coverSampleSize(bounds.outHeight, heightPx)
+        }
+        BitmapFactory.decodeFile(path, options)?.asImageBitmap()?.also {
+            CoverCache.put(coverKey(path, heightPx), it)
+        }
+    }.getOrNull()
+}
+
+/** Maior potência de 2 que ainda deixa a imagem com pelo menos a altura pedida. */
+internal fun coverSampleSize(sourceHeight: Int, targetHeight: Int): Int {
+    var sample = 1
+    while (targetHeight > 0 && sourceHeight / (sample * 2) >= targetHeight) sample *= 2
+    return sample
+}
+
 @Composable
 fun BookCover(
     title: String,
@@ -47,11 +79,10 @@ fun BookCover(
     height: Dp,
     modifier: Modifier = Modifier,
 ) {
-    var image by remember(coverPath) { mutableStateOf<ImageBitmap?>(null) }
-    LaunchedEffect(coverPath) {
-        image = coverPath?.let { path ->
-            withContext(Dispatchers.IO) { runCatching { BitmapFactory.decodeFile(path)?.asImageBitmap() }.getOrNull() }
-        }
+    val heightPx = with(LocalDensity.current) { height.roundToPx() }
+    var image by remember(coverPath, heightPx) { mutableStateOf(cachedCover(coverPath, heightPx)) }
+    LaunchedEffect(coverPath, heightPx) {
+        if (image == null && coverPath != null) image = loadCover(coverPath, heightPx)
     }
     val shape = RoundedCornerShape(if (width > 56.dp) 4.dp else 3.dp)
     val loaded = image
