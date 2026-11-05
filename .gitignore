@@ -19,3 +19,4 @@ build/
 adbkey
 adbkey.pub
 samples/
+dist/

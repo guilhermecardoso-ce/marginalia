@@ -36,7 +36,6 @@ androidx-datastore-preferences = { module = "androidx.datastore:datastore-prefer
 
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 compose-ui = { module = "androidx.compose.ui:ui" }
-compose-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text" }
 compose-foundation = { module = "androidx.compose.foundation:foundation" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
